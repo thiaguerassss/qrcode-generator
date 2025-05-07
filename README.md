@@ -43,7 +43,29 @@ POST /qrcodegenerator
 ### Resposta (`200 OK`)
 ```json
 {
-  "url": "https://meu-bucket.s3.sa-east-1.amazonaws.com/uuid-gerado.png"
+  "url": "https://aws-qrcodes-storage.s3.us-east-1.amazonaws.com/uuid-gerado"
+}
+```
+
+---
+
+## ☁️ API em Produção
+
+A aplicação está implantada e rodando na AWS EC2 via Docker.
+
+Você pode testá-la com:
+
+```bash
+curl -X POST http://34.200.237.15:8080/qrcodegenerator \
+-H "Content-Type: application/json" \
+-d '{"text":"https://teste.com"}'
+```
+
+A resposta será semelhante a:
+
+```json
+{
+  "url": "https://aws-qrcodes-storage.s3.us-east-1.amazonaws.com/uuid-gerado"
 }
 ```
 
