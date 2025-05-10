@@ -1,31 +1,31 @@
 
-# 📦 QR Code Generator API
+# 📦 QR Code Generator
 
-Uma API REST desenvolvida em Java com Spring Boot que gera QR Codes a partir de um texto enviado via JSON e faz o upload da imagem gerada diretamente para um bucket AWS S3. A URL pública da imagem é retornada como resposta.
+Uma aplicação **Full Stack** desenvolvida em Java com Spring Boot + HTML/CSS/JavaScript, capaz de gerar QR Codes a partir de um texto e disponibilizar o resultado para visualização e download direto no navegador.
+
+A imagem gerada é armazenada automaticamente em um bucket **AWS S3**, e sua URL pública é retornada pela API.
 
 ---
 
 ## 🚀 Funcionalidades
 
-- ✅ Recebe um `text` via requisição HTTP POST
-- ✅ Gera uma imagem QR Code (formato PNG)
-- ✅ Realiza upload da imagem para um bucket AWS S3
-- ✅ Retorna a URL pública da imagem hospedada na AWS
+- ✅ Front-end elegante com interface web (input + visualização + botão de download)
+- ✅ Geração de QR Code a partir de um texto via frontend ou API
+- ✅ Upload automático da imagem para o Amazon S3
+- ✅ URL pública gerada automaticamente
+- ✅ Download do QR Code gerado em formato PNG
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🌐 Acesse a Interface Web
 
-- Java 17
-- Spring Boot
-- AWS SDK (S3)
-- ZXing (`com.google.zxing`) para geração do QR Code
-- Docker
-- Maven
+A interface web está rodando em uma instância AWS EC2, podendo ser acessada na URL abaixo:
+
+[http://ec2-34-200-237-15.compute-1.amazonaws.com:8080/index.html](http://ec2-34-200-237-15.compute-1.amazonaws.com:8080/index.html)
 
 ---
 
-## 🧪 Requisição de Exemplo
+## 🧪 API – Detalhes Técnicos
 
 ### Endpoint
 
@@ -43,40 +43,41 @@ POST /qrcodegenerator
 ### Resposta (`200 OK`)
 ```json
 {
-  "url": "https://aws-qrcodes-storage.s3.us-east-1.amazonaws.com/uuid-gerado"
+  "url": "https://aws-qrcodes-storage.s3.us-east-1.amazonaws.com/uuid-gerado.png"
 }
 ```
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- Java 17
+- Spring Boot
+- HTML, CSS e Javascript
+- AWS SDK (S3)
+- Docker
+- Maven
 
 ---
 
 ## ☁️ API em Produção
 
-A aplicação está implantada e rodando na AWS EC2 via Docker.
-
-Você pode testá-la com:
+Caso queira fazer uma requisição diretamente para a API, você pode utilizar ferramentas como Postman, Insomnia ou cURL.
 
 ```bash
-curl -X POST http://34.200.237.15:8080/qrcodegenerator \
+curl -X POST http://ec2-34-200-237-15.compute-1.amazonaws.com:8080/qrcodegenerator \
 -H "Content-Type: application/json" \
 -d '{"text":"https://teste.com"}'
 ```
 
-A resposta será semelhante a:
-
-```json
-{
-  "url": "https://aws-qrcodes-storage.s3.us-east-1.amazonaws.com/uuid-gerado"
-}
-```
-
 ---
 
-## ▶️ Como rodar localmente
+## ▶️ Como rodar o projeto localmente
 
 ```bash
 # Clonar o projeto
-git clone https://github.com/thiaguerassss/qrcode-generator-api.git
-cd qrcode-generator-api
+git clone https://github.com/thiaguerassss/qrcode-generator.git
+cd qrcode-generator
 ```
 
 ### ⚙️ Configuração de Ambiente
@@ -104,7 +105,7 @@ docker run --env-file .env -p 8080:8080 qrcode-app
 
 ---
 
-#### 💻 Sem Docker (executando localmente)
+#### 💻 Sem Docker
 
 Se preferir rodar sem Docker, você deve definir as variáveis de ambiente diretamente no seu sistema operacional:
 
@@ -128,18 +129,6 @@ Em seguida, rode a aplicação:
 
 ```bash
 ./mvnw spring-boot:run
-```
-
----
-
-## ✅ Testes
-
-Use ferramentas como **Postman**, **Insomnia** ou **cURL** para testar:
-
-```bash
-curl -X POST http://localhost:8080/qrcodegenerator \
--H "Content-Type: application/json" \
--d '{"text":"https://teste.com"}'
 ```
 
 ---
