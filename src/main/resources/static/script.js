@@ -12,7 +12,7 @@ async function generateQRCode() {
   downloadBtn.style.display = 'none';
 
   try {
-    const response = await fetch('http://34.200.237.15:8080/qrcodegenerator', {
+    const response = await fetch('http://34.200.237.15/qrcodegenerator', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ text })
