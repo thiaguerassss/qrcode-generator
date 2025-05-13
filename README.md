@@ -21,7 +21,7 @@ A imagem gerada é armazenada automaticamente em um bucket **AWS S3**, e sua URL
 
 A interface web está rodando em uma instância AWS EC2, podendo ser acessada na URL abaixo:
 
-[http://ec2-34-200-237-15.compute-1.amazonaws.com:8080/index.html](http://ec2-34-200-237-15.compute-1.amazonaws.com:8080/index.html)
+[http://ec2-34-200-237-15.compute-1.amazonaws.com/index.html](http://ec2-34-200-237-15.compute-1.amazonaws.com/index.html)
 
 ---
 
@@ -65,7 +65,7 @@ POST /qrcodegenerator
 Caso queira fazer uma requisição diretamente para a API, você pode utilizar ferramentas como Postman, Insomnia ou cURL.
 
 ```bash
-curl -X POST http://ec2-34-200-237-15.compute-1.amazonaws.com:8080/qrcodegenerator \
+curl -X POST http://ec2-34-200-237-15.compute-1.amazonaws.com/qrcodegenerator \
 -H "Content-Type: application/json" \
 -d '{"text":"https://teste.com"}'
 ```
